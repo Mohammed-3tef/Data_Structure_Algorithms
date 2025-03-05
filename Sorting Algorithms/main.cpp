@@ -10,21 +10,13 @@ void operator<<(ostream &out, vector<T> &arr) {
     cout << endl;
 }
 
-template<typename T>
-void operator<<(ostream &out, vector<vector<T>> &arr) {
-    for (auto row: arr) {
-        for (auto element: row) {
-            cout << element << " ";
-        }
-        cout << endl;
-    }
-    cout << endl;
-}
-
 int main() {
-    vector<int> arr = {3, 2, 5, 8, 15, 9, 4, 1};
+    vector<int> arr = {3, 10, 2, 5, 8, 7, 9, 4, 1, 6};
+
 //    insertionSort(arr);
 //    bubbleSort(arr);
-    selectionSort(arr);
+//    selectionSort(arr);
+//    shellSort(arr);
+
     cout << arr;
 }

@@ -1,5 +1,5 @@
-#ifndef SORTING_ALGORITHMS_SORTINGALGORITHMS_H
-#define SORTING_ALGORITHMS_SORTINGALGORITHMS_H
+#ifndef SORTING_ALGORITHMS_H
+#define SORTING_ALGORITHMS_H
 
 #include <iostream>
 using namespace std;
@@ -35,6 +35,7 @@ void insertionSort(vector<T>& arr) {
 template<class T>
 void selectionSort(vector<T>& arr) {
     int size = int(arr.size());
+
     for (int i = 0; i < size -1; ++i) {
         int currentIndex = i;
         for (int j = i + 1; j < size; ++j) {
@@ -54,6 +55,7 @@ void selectionSort(vector<T>& arr) {
 template<class T>
 void bubbleSort(vector<T>& arr) {
     int size = int(arr.size());
+
     for (int i = 0; i < size - 1; ++i) {
         for (int j = 0; j < size - i - 1; ++j) {
             if (arr[j] > arr[j+1]) swap(arr[j + 1], arr[j]);
@@ -61,4 +63,30 @@ void bubbleSort(vector<T>& arr) {
     }
 }
 
-#endif //SORTING_ALGORITHMS_SORTINGALGORITHMS_H
+
+// Shell Sort:
+// --> Time Complexity:
+//    - Best Case: O(n) --> When the array is already sorted.
+//    - Average Case: O(n^1.5)
+//    - Worst Case: O(n^2) --> When the array is sorted in reverse order.
+// --> Space Complexity = O(n)
+
+template<class T>
+void shellSort(vector<T>& arr) {
+    int size = arr.size();
+
+    for (int gap = size /2; gap > 0; gap /= 2) {
+        for (int i = gap; i < size; ++i) {
+            T temp = arr[i];
+            int j = i;
+
+            while (j >= gap && arr[j - gap] > temp) {
+                arr[j] = arr[j - gap];
+                j -= gap;
+            }
+            arr[j] = temp;
+        }
+    }
+}
+
+#endif //SORTING_ALGORITHMS_H
