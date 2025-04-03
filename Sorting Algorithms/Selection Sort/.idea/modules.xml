@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Sorting Algorithms.iml" filepath="$PROJECT_DIR$/.idea/Sorting Algorithms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Selection Sort.iml" filepath="$PROJECT_DIR$/.idea/Selection Sort.iml" />
     </modules>
   </component>
 </project>
