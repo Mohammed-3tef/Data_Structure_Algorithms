@@ -33,13 +33,56 @@ public:
 
 template<typename T>
 class BST {
+private:
+    int findHeight(BSTNode<T>* current) {
+        if (!current) return -1;
+        return 1 + max(findHeight(current->getLeft()), findHeight(current->getRight()));
+    }
+
+    void inOrder(BSTNode<T>* current){
+        if (current != 0){
+            inOrder(current->getLeft());
+            cout << current->getData() << " ";
+            inOrder(current->getRight());
+        }
+    }
+
+    void inOrder(BSTNode<T>* current, const string& action, T& result){
+        if (current){
+            inOrder(current->getLeft(), action, result);
+
+            if (action == "Sum") result += current->getData();
+            else if (action == "Count Nodes") result++;
+            else if (action == "Count Leaves"){
+                if (!current->getLeft() && !current->getRight()) result++;
+            }
+
+            inOrder(current->getRight(), action, result);
+        }
+    }
+
+    void preOrder(BSTNode<T>* current){
+        if (current != 0){
+            cout << current->getData() << " ";
+            preOrder(current->getLeft());
+            preOrder(current->getRight());
+        }
+    }
+
+    void postOrder(BSTNode<T>* current){
+        if (current != 0){
+            postOrder(current->getLeft());
+            postOrder(current->getRight());
+            cout << current->getData() << " ";
+        }
+    }
+
 protected:
     BSTNode<T>* root;
-    int size;
+
 public:
     BST(){
         this->root = 0;
-        this->size = 0;
     }
 
     ~BST(){
@@ -48,15 +91,33 @@ public:
 
     void clear(){
         this->root = 0;
-        this->size = 0;
     }
 
     bool isEmpty(){
         return (this->root == 0);
     }
 
-    int length(){
-        return this->size;
+    int height(){
+        BSTNode<T>* current = this->root;
+        return findHeight(current) + 1;
+    }
+
+    int countNodes(){
+        T totalNodes = 0;
+        BSTNode<T>* current = this->root;
+        inOrder(current, "Count Nodes", totalNodes);
+        return totalNodes;
+    }
+
+    int countLeaves(){
+        T totalLeaves = 0;
+        BSTNode<T>* current = this->root;
+        inOrder(current, "Count Leaves", totalLeaves);
+        return totalLeaves;
+    }
+
+    int countInternalNodes(){
+        return countNodes() - countLeaves();
     }
 
     T findMin(){
@@ -77,6 +138,13 @@ public:
         return current->getData();
     }
 
+    T findSum(){
+        BSTNode<T>* current = this->root;
+        T sum = 0;
+        inOrder(current, "Sum", sum);
+        return sum;
+    }
+
     bool search(const T& data){
         BSTNode<T>* current = this->root;
 
@@ -95,7 +163,6 @@ public:
 
         if (this->root == 0) {
             this->root = newNode;
-            this->size++;
             return;
         }
 
@@ -121,7 +188,6 @@ public:
                 break;
             }
         }
-        this->size++;
     }
 
     void erase(const T& data){
@@ -171,8 +237,6 @@ public:
 
                 delete node;
             }
-
-            this->size--;
         }
     }
 
@@ -193,30 +257,6 @@ public:
                     queue.push(current->getRight());
             }
             cout << endl;
-        }
-    }
-
-    void inOrder(BSTNode<T>* current){
-        if (current != 0){
-            inOrder(current->getLeft());
-            cout << current->getData() << " ";
-            inOrder(current->getRight());
-        }
-    }
-
-    void preOrder(BSTNode<T>* current){
-        if (current != 0){
-            cout << current->getData() << " ";
-            preOrder(current->getLeft());
-            preOrder(current->getRight());
-        }
-    }
-
-    void postOrder(BSTNode<T>* current){
-        if (current != 0){
-            postOrder(current->getLeft());
-            postOrder(current->getRight());
-            cout << current->getData() << " ";
         }
     }
 
