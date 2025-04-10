@@ -2,7 +2,6 @@
 #define LINKED_LIST_DOUBLY_LINKED_LIST_H
 
 #include <bits/stdc++.h>
-#include "Unordered_Linked_List.h"
 using namespace std;
 
 template<typename T>
@@ -168,21 +167,19 @@ public:
         return current->data;
     }
 
-    void operator = (const DoublyLinkedList<T> *other){
-        this->head = other->head, this->size = other->size;
+    void operator = (const DoublyLinkedList<T>* other) {
+        if (this == other) return;
+        this->clear();
 
-        doubleNode<T>* currentFirstList = this->head;
-        doubleNode<T>* currentSecondList = other->head;
-        while (currentFirstList != nullptr && currentSecondList != nullptr) {
-            currentFirstList = currentFirstList->next;
-            (currentFirstList->next)->prev = currentFirstList;
-
-            currentSecondList = currentSecondList->next;
-            (currentSecondList->next)->prev = currentSecondList;
+        doubleNode<T>* current = other->head;
+        while (current != nullptr) {
+            this->insert(current->data);
+            current->prev = current;
+            current = current->next;
         }
 
-        delete[] currentFirstList;
-        delete[] currentSecondList;
+        this->size = other->size;
+        this->tail = other->tail;
     }
 };
 

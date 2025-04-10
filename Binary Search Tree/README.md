@@ -13,22 +13,22 @@
 ## UML Diagram
 ```mermaid
     classDiagram
-    class BSTNode {
+    class BSTNode~T~ {
         -data : T
-        -left : BSTNode** 
-        -right : BSTNode**
+        -left : BSTNode~T~** 
+        -right : BSTNode~T~**
         +BSTNode()
-        +BSTNode(data : T, left : BSTNode*, right : BSTNode*)
+        +BSTNode(data : T, left : BSTNode~T~*, right : BSTNode~T~*)
         +getData() T
         +setData(newData : const T) void
         +getRight() BSTNode**
-        +setRight(node : BSTNode<T>*) void
-        +getLeft() BSTNode**
-        +setLeft(node : BSTNode<T>*) void
+        +setRight(node : BSTNode~T~*) void
+        +getLeft() BSTNode~T~**
+        +setLeft(node : BSTNode~T~*) void
     }
 
-    class BST {
-        #root : BSTNode**
+    class BST~T~ {
+        #root : BSTNode~T~**
         +BST()
         +~BST()
         +clear() void
@@ -45,15 +45,15 @@
         +erase(data : const T) void
         +printBreadthFirst() void
         +printDepthFirst(orderBy : const string) void
-        -findHeight(current : BSTNode<T>*) int
-        -inOrder(current : BSTNode<T>* ) void
-        -inOrder(current : BSTNode<T>*, action : string, result : T) void
-        -preOrder(current : BSTNode<T>*) void
-        -postOrder(current : BSTNode<T>*) void
+        -findHeight(current : BSTNode~T~*) int
+        -inOrder(current : BSTNode~T~*) void
+        -inOrder(current : BSTNode~T~*, action : string, result : T) void
+        -preOrder(current : BSTNode~T~*) void
+        -postOrder(current : BSTNode~T~*) void
     }
 
-    BST "1" *-- "0..*" BSTNode : contains
-    BSTNode <|-- BST : uses
+    BST~T~ "1" *-- "0..*" BSTNode~T~ : contains
+    BSTNode~T~ <|-- BST~T~ : uses
 ```
 
 ## Contributing

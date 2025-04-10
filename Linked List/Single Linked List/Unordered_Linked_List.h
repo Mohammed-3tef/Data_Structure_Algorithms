@@ -162,17 +162,16 @@ public:
     }
 
     void operator = (const unorderedLinkedList<T> *other){
-        this->head = other->head, this->size = other->size;
+        if (this == other) return;
+        this->clear();
 
-        Node<T>* currentFirstList = this->head;
-        Node<T>* currentSecondList = other->head;
-        while (currentFirstList != nullptr && currentSecondList != nullptr) {
-            currentFirstList = currentFirstList->next;
-            currentSecondList = currentSecondList->next;
+        Node<T>* current = other->head;
+        while (current != nullptr) {
+            this->insert(current->data);
+            current = current->next;
         }
 
-        delete[] currentFirstList;
-        delete[] currentSecondList;
+        this->size = other->size;
     }
 };
 
