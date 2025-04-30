@@ -33,12 +33,12 @@
         +~BST()
         +clear() void
         +isEmpty() bool
-        +height() int
+        +level() int
         +countNodes() int
         +countLeaves() int
         +countInternalNodes() int
-        +findMin() T
-        +findMax() T
+        +minElement() T
+        +maxElement() T
         +findSum() T
         +search(data : const T) bool
         +insert(data : const T) void

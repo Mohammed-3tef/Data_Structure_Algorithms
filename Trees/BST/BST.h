@@ -1,5 +1,5 @@
-#ifndef BINARY_SEARCH_TREE_BST_H
-#define BINARY_SEARCH_TREE_BST_H
+#ifndef BST_BST_H
+#define BST_BST_H
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -34,13 +34,20 @@ public:
 template<typename T>
 class BST {
 private:
-    int findHeight(BSTNode<T>* current) {
+    BSTNode<T>* root;
+
+    int findHeight(BSTNode<T>* current){
         if (!current) return -1;
         return 1 + max(findHeight(current->getLeft()), findHeight(current->getRight()));
     }
 
+    int balanceFactor(BSTNode<T>* current){
+        if (!current) return 0;
+        return findHeight(current->getLeft()) - findHeight(current->getRight());
+    }
+
     void inOrder(BSTNode<T>* current){
-        if (current != 0){
+        if (current){
             inOrder(current->getLeft());
             cout << current->getData() << " ";
             inOrder(current->getRight());
@@ -56,13 +63,20 @@ private:
             else if (action == "Count Leaves"){
                 if (!current->getLeft() && !current->getRight()) result++;
             }
+            else if (action == "Balance") {
+                int balanceFac = balanceFactor(current);
+                if (balanceFac != 0 && balanceFac != 1 && balanceFac != -1) {
+                    result = false;
+                    return;
+                }
+            }
 
             inOrder(current->getRight(), action, result);
         }
     }
 
     void preOrder(BSTNode<T>* current){
-        if (current != 0){
+        if (current){
             cout << current->getData() << " ";
             preOrder(current->getLeft());
             preOrder(current->getRight());
@@ -70,15 +84,12 @@ private:
     }
 
     void postOrder(BSTNode<T>* current){
-        if (current != 0){
+        if (current){
             postOrder(current->getLeft());
             postOrder(current->getRight());
             cout << current->getData() << " ";
         }
     }
-
-protected:
-    BSTNode<T>* root;
 
 public:
     BST(){
@@ -97,22 +108,25 @@ public:
         return (this->root == 0);
     }
 
-    int height(){
-        BSTNode<T>* current = this->root;
-        return findHeight(current) + 1;
+    bool isBalance(){
+        T balance = true;
+        inOrder(this->root, "Balance", balance);
+        return balance;
+    }
+
+    int level(){
+        return findHeight(this->root);
     }
 
     int countNodes(){
         T totalNodes = 0;
-        BSTNode<T>* current = this->root;
-        inOrder(current, "Count Nodes", totalNodes);
+        inOrder(this->root, "Count Nodes", totalNodes);
         return totalNodes;
     }
 
     int countLeaves(){
         T totalLeaves = 0;
-        BSTNode<T>* current = this->root;
-        inOrder(current, "Count Leaves", totalLeaves);
+        inOrder(this->root, "Count Leaves", totalLeaves);
         return totalLeaves;
     }
 
@@ -120,7 +134,7 @@ public:
         return countNodes() - countLeaves();
     }
 
-    T findMin(){
+    T minElement(){
         BSTNode<T>* current = this->root;
 
         while (current->getLeft() != 0) {
@@ -129,7 +143,7 @@ public:
         return current->getData();
     }
 
-    T findMax(){
+    T maxElement(){
         BSTNode<T>* current = this->root;
 
         while (current->getRight() != 0) {
@@ -139,9 +153,8 @@ public:
     }
 
     T findSum(){
-        BSTNode<T>* current = this->root;
         T sum = 0;
-        inOrder(current, "Sum", sum);
+        inOrder(this->root, "Sum", sum);
         return sum;
     }
 
@@ -205,7 +218,7 @@ public:
         }
 
         if (node != 0) {
-                // Case 1: Node has two children
+            // Case 1: Node has two children
             if (node->getLeft() && node->getRight()) {
                 BSTNode<T>* temp = node->getLeft();
                 BSTNode<T>* prev = node;
@@ -280,4 +293,4 @@ public:
     }
 };
 
-#endif //BINARY_SEARCH_TREE_BST_H
+#endif //BST_BST_H
