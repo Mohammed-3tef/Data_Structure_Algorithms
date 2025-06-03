@@ -19,6 +19,17 @@ int main() {
     st->print();
     st->clear();
 
+    if (st->empty()) cout << "The Stack is empty..." << endl;
+    else cout << "The Stack is NOT empty..." << endl;
+
+    string parentheses = "([)]";
+    if (isValidParentheses(parentheses)){
+        cout << parentheses << " is valid" << endl;
+    }
+    else cout << parentheses << " is not valid" << endl;
+
+    cout << endl;
+
     auto *q = new Queue<int>();
     q->enqueue(10);
     q->enqueue(15);
@@ -34,7 +45,7 @@ int main() {
 
     q->clear();
 
-    if (q->isEmpty()) cout << "The Queue is empty..." << endl;
+    if (q->empty()) cout << "The Queue is empty..." << endl;
     else cout << "The Queue is NOT empty..." << endl;
 
     return 0;

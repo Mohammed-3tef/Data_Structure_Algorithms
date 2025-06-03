@@ -22,7 +22,7 @@ public:
         this->size = 0;
     }
 
-    bool isEmpty(){
+    bool empty(){
         return (this->size == 0);
     }
 

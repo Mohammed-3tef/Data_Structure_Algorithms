@@ -15,7 +15,7 @@ public:
         this->arr = new T(this->size) ;
     };
 
-    bool isEmpty (){
+    bool empty (){
         return (this->size == 0) ;
     }
 
@@ -57,5 +57,23 @@ public:
     }
 };
 
+bool isValidParentheses(const string& s) {
+    stack<char> st;
+    for (char i : s) {
+        if (i == '(' || i == '[' || i == '{') st.push(i);
+        else {
+            if (st.empty()) return false;
+            else if ((st.top() == '(' && i == ')') ||
+                     (st.top() == '[' && i == ']') ||
+                     (st.top() == '{' && i == '}')) {
+                st.pop();
+            }
+            else return false;
+        }
+    }
+
+    if (st.empty()) return true;
+    return false;
+}
 
 #endif //STACK_QUEUE_STACK_H
