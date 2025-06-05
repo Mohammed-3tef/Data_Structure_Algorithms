@@ -42,6 +42,14 @@ class AVL {
 private:
     AVLNode<T>* root;
 
+    bool isSame(AVLNode<T>* left, AVLNode<T>* right) {
+        if (!left && !right) return true;
+        else if (!left || !right) return false;
+        return (left->getData() == right->getData()) &&
+               isSame(left->getLeft(), right->getLeft()) &&
+               isSame(left->getRight(), right->getRight());
+    }
+
     int findHeight(AVLNode<T>* current) {
         if (!current) return 0;
         return current->getHeight();
@@ -183,7 +191,6 @@ private:
         return updateBalance(node);
     }
 
-
     AVLNode<T>* findMin(AVLNode<T>* node) {
         while (node->getLeft()) node = node->getLeft();
         return node;
@@ -218,6 +225,12 @@ public:
 
     bool empty(){
         return (this->root == 0);
+    }
+
+    bool isSameTree(AVL<T>* other){
+        if (!this->root && !other->root) return true;
+        else if (!this->root || !other->root || this->root->getData() != other->root->getData()) return false;
+        return isSame(this->root->getLeft(), other->root->getLeft()) && isSame(this->root->getRight(), other->root->getRight());
     }
 
     int level(){
