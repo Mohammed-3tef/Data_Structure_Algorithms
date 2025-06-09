@@ -20,10 +20,19 @@ void print(T arr[], const int& size) {
 // -------------------------------- QUICK SORT
 /*
 --> Time Complexity:
-    - Best Case: O(n)
-    - Average Case: O(n^2)
+    - Best Case: O(nlog(n))
+    - Average Case: O(nlog(n))
     - Worst Case: O(n^2)
---> Space Complexity = O(1)
+--> Space Complexity: O(log(n))
+--> Adaptive: No
+--> Stable: No
+--> In-Place: Yes
+
+--> Pivot Selection:
+    - First Element (Not good for sorted arrays).
+    - Last Element (Ok).
+    - Random Element (Best Way).
+    - Median of Three (first, middle, last).
 */
 
 template<typename T>

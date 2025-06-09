@@ -20,10 +20,13 @@ void print(T arr[], const int& size) {
 // -------------------------------- SHELL SORT
 /*
 --> Time Complexity:
-    - Best Case: O(n)
-    - Average Case: O(n^2)
+    - Best Case: O(nlog(n))
+    - Average Case: O(n^1.5) Depending on gap sequence
     - Worst Case: O(n^2)
---> Space Complexity = O(1)
+--> Space Complexity: O(1)
+--> Adaptive: No
+--> Stable: No
+--> In-Place: Yes
 */
 
 template<typename T>

@@ -20,10 +20,13 @@ void print(T arr[], const int& size) {
 // -------------------------------- MERGE SORT
 /*
 --> Time Complexity:
-    - Best Case: O(n)
-    - Average Case: O(n^2)
-    - Worst Case: O(n^2)
---> Space Complexity = O(1)
+    - Best Case: O(nlog(n))
+    - Average Case: O(nlog(n))
+    - Worst Case: O(nlog(n))
+--> Space Complexity: O(n)
+--> Adaptive: No
+--> Stable: Yes
+--> In-Place: No
 */
 
 template<typename T>
