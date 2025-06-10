@@ -20,10 +20,13 @@ void print(T arr[], const int& size) {
 // -------------------------------- SELECTION SORT
 /*
 --> Time Complexity:
-    - Best Case: O(n)
+    - Best Case: O(n^2)
     - Average Case: O(n^2)
     - Worst Case: O(n^2)
 --> Space Complexity = O(1)
+--> Adaptive: No
+--> Stable: No
+--> In-Place: Yes
 */
 
 template<typename T>

@@ -19,11 +19,18 @@ void print(T arr[], const int& size) {
 
 // -------------------------------- COUNT SORT
 /*
+Where n is the number of elements in the input array
+    and k is the range of the input values.
 --> Time Complexity:
-    - Best Case: O(n)
-    - Average Case: O(n^2)
-    - Worst Case: O(n^2)
---> Space Complexity = O(1)
+    - Best Case: O(n + k)
+    - Average Case: O(n + k)
+    - Worst Case: O(n + k)
+--> Space Complexity: O(k)
+    - O(k) for the count array.
+    - O(n) for the output array.
+--> Adaptive: No
+--> Stable: Yes
+--> In-Place: No
 */
 
 template<typename T>

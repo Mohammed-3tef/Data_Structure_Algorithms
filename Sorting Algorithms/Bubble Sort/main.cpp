@@ -23,7 +23,10 @@ void print(T arr[], const int& size) {
     - Best Case: O(n)
     - Average Case: O(n^2)
     - Worst Case: O(n^2)
---> Space Complexity = O(1)
+--> Space Complexity: O(1)
+--> Adaptive: Yes
+--> Stable: Yes
+--> In-Place: Yes
 */
 
 template<typename T>
@@ -31,9 +34,16 @@ void bubbleSort(vector<T>& arr, const int& size) {
     if (size == 0) return;
 
     for (int i = 0; i < size - 1; ++i) {
+        // To be adaptive.
+        bool sorted = false;
         for (int j = 0; j < size - i - 1; ++j) {
-            if (arr[j] > arr[j+1]) swap(arr[j + 1], arr[j]);
+            if (arr[j] > arr[j+1]) {
+                swap(arr[j + 1], arr[j]);
+                sorted = true;
+            }
         }
+
+        if (!sorted) return;
     }
 }
 
@@ -42,9 +52,16 @@ void bubbleSort(T arr[], const int& size) {
     if (size == 0) return;
 
     for (int i = 0; i < size - 1; ++i) {
+        // To be adaptive.
+        bool sorted = false;
         for (int j = 0; j < size - i - 1; ++j) {
-            if (arr[j] > arr[j+1]) swap(arr[j + 1], arr[j]);
+            if (arr[j] > arr[j+1]) {
+                swap(arr[j + 1], arr[j]);
+                sorted = true;
+            }
         }
+
+        if (!sorted) return;
     }
 }
 

@@ -26,6 +26,20 @@ struct TreeNode {
 
 class Solution {
 private:
+    bool isMirror(TreeNode* left, TreeNode* right){
+        if (!left && !right) return true;
+        else if (!left || !right) return false;
+        return (left->val == right->val) && isMirror(left->right, right->left) && isMirror(left->left, right->right);
+    }
+
+    bool isSame(TreeNode* left, TreeNode* right) {
+        if (!left && !right) return true;
+        else if (!left || !right) return false;
+        return (left->val == right->val) &&
+               isSame(left->left, right->left) &&
+               isSame(left->right, right->right);
+    }
+
     void inorder(TreeNode *current, vector<int> &res){
         if (current){
             inorder(current->left, res);
@@ -130,6 +144,25 @@ public:
         }
         sort(res.begin(), res.end());
         return res[0];
+    }
+
+    /*  VERY IMPORTANT...
+        * 101. Symmetric Tree (Leetcode).
+        * Link: https://leetcode.com/problems/symmetric-tree/description/
+    */
+    bool isSymmetric(TreeNode* root) {
+        if (!root) return true;
+        return isMirror(root->left, root->right);
+    }
+
+    /*
+        * 100. Same Tree (Leetcode).
+        * Link: https://leetcode.com/problems/same-tree/description/
+    */
+    bool isSameTree(TreeNode* first, TreeNode* second) {
+        if (!first && !second) return true;
+        else if (!first || !second || first->val != second->val) return false;
+        return isSame(first->left, second->left) && isSame(first->right, second->right);
     }
 };
 

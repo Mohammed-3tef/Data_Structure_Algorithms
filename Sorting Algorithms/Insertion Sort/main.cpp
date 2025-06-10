@@ -24,6 +24,9 @@ void print(T arr[], const int& size) {
     - Average Case: O(n^2)
     - Worst Case: O(n^2)
 --> Space Complexity = O(1)
+--> Adaptive: Yes
+--> Stable: Yes
+--> In-Place: Yes
 */
 
 template<typename T>

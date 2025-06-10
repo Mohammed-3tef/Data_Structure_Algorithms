@@ -23,7 +23,7 @@ void print(T arr[], const int& size) {
     - Best Case: O(n)
     - Average Case: O(n^2)
     - Worst Case: O(n^2)
---> Space Complexity = O(1)
+--> Space Complexity: O(1)
 */
 
 template<typename T>
@@ -58,11 +58,16 @@ void insertionSort(T arr[], const int& size) {
 
 // -------------------------------- BUCKET SORT
 /*
+Where n is the number of elements in the array
+    and k is the number of buckets.
 --> Time Complexity:
-    - Best Case: O(n)
-    - Average Case: O(n^2)
+    - Best Case: O(n + k)
+    - Average Case: O(n + k)
     - Worst Case: O(n^2)
---> Space Complexity = O(1)
+--> Space Complexity: O(n)
+--> Adaptive: No
+--> Stable: Yes
+--> In-Place: No
 */
 
 template<typename T>

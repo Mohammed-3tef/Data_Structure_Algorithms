@@ -312,7 +312,7 @@ public:
         sort(temp.begin(), temp.end());
         ListNode *res = new ListNode(temp[0]);
         ListNode *dummy = res;
-        for (int i = 1; i < temp.size(); --i) {
+        for (int i = 1; i < temp.size(); ++i) {
             dummy->next = new ListNode(temp[i]);
             dummy = dummy->next;
         }
@@ -380,6 +380,35 @@ public:
             temp++;
         }
         return -1;
+    }
+
+    /*
+        * 61. Rotate List (Leetcode).
+        * Link: https://leetcode.com/problems/rotate-list/description/
+    */
+    ListNode* rotateRight(ListNode* head, int k) {
+        if (!head) return nullptr;
+
+        vector<int> temp;
+        ListNode *current = head;
+        while (current){
+            temp.push_back(current->val);
+            current = current->next;
+        }
+
+        while (k--){
+            temp.insert(temp.begin(), *temp.rbegin());
+            temp.erase(temp.begin() + temp.size());
+            if (k %temp.size() == 0) break;
+        }
+
+        ListNode *res = new ListNode(temp[0]);
+        ListNode *dummy = res;
+        for (int i = 1; i < temp.size(); ++i) {
+            dummy->next = new ListNode(temp[i]);
+            dummy = dummy->next;
+        }
+        return res;
     }
 };
 

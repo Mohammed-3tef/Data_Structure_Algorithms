@@ -91,6 +91,14 @@ private:
         }
     }
 
+    bool isSame(BSTNode<T>* left, BSTNode<T>* right) {
+        if (!left && !right) return true;
+        else if (!left || !right) return false;
+        return (left->getData() == right->getData()) &&
+               isSame(left->getLeft(), right->getLeft()) &&
+               isSame(left->getRight(), right->getRight());
+    }
+
 public:
     BST(){
         this->root = 0;
@@ -106,6 +114,12 @@ public:
 
     bool isEmpty(){
         return (this->root == 0);
+    }
+
+    bool isSameTree(BST<T>* other){
+        if (!this->root && !other->root) return true;
+        else if (!this->root || !other->root || this->root->getData() != other->root->getData()) return false;
+        return isSame(this->root->getLeft(), other->root->getLeft()) && isSame(this->root->getRight(), other->root->getRight());
     }
 
     bool isBalance(){

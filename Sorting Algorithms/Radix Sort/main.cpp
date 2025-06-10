@@ -19,11 +19,17 @@ void print(T arr[], const int& size) {
 
 // -------------------------------- RADIX SORT
 /*
+where n is the number of elements in the array
+    and k is the number of digits in the maximum number
+    (logarithmic base 10 of the maximum value).
 --> Time Complexity:
-    - Best Case: O(n)
-    - Average Case: O(n^2)
-    - Worst Case: O(n^2)
---> Space Complexity = O(1)
+    - Best Case: O(nk)
+    - Average Case: O(nk)
+    - Worst Case: O(nk)
+--> Space Complexity: O(n + k),
+--> Adaptive: No
+--> Stable: Yes
+--> In-Place: No
 */
 
 template<typename T>
