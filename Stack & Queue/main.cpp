@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 #include "Stack.h"
 #include "Queue.h"
+#include "PriorityQueue.h"
+
 using namespace std;
 
 int main() {
@@ -43,7 +45,7 @@ int main() {
     cout << "The Postfix Expression is: " << postfixExpression << endl;
     cout << "The Result = " << evaluatePostfix(postfixExpression) << endl;
 
-    cout << endl;
+    cout << endl; // ---------------------------------- QUEUE
 
     auto *q = new Queue<int>();
     q->enqueue(10);
@@ -68,6 +70,31 @@ int main() {
 
     if (q->empty()) cout << "The Queue is empty..." << endl;
     else cout << "The Queue is NOT empty..." << endl;
+
+    cout << endl; // ---------------------------------- PRIORITY QUEUE
+
+    auto *pq = new PriorityQueue<int>();
+    pq->enqueue(10, 2);
+    pq->enqueue(5, 3);
+    pq->enqueue(8);
+    pq->enqueue(3);
+
+    cout << "The Priority Queue: ";
+    pq->print();
+
+    cout << "The Element that has Maximum Priority: " << pq->top() << endl;
+
+    pq->dequeue();
+
+    cout << "The Priority Queue: ";
+    pq->print();
+
+    cout << "The Priority Queue's size: " << pq->size() << endl;
+
+    pq->clear();
+
+    if (pq->empty()) cout << "The Priority Queue is empty..." << endl;
+    else cout << "The Priority Queue is NOT empty..." << endl;
 
     return 0;
 }
