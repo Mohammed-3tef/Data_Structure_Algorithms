@@ -60,10 +60,16 @@ Data_Structure_Algorithms/
 │       ├── AVL.h
 │       └── README.md
 │
-│   └── BST/
+│   ├── BST/
 │       ├── main.cpp
 │       ├── BST.h
 │       ├── Problem_Solving.h
+│       └── README.md
+│
+│   └── Heap/
+│       ├── main.cpp
+│       ├── MaxHeap.h
+│       ├── MinHeap.h
 │       └── README.md
 │
 ├── README.md
