@@ -45,11 +45,13 @@ Data_Structure_Algorithms/
 │   ├── Radix Sort/
 │   ├── Selection Sort/
 │   ├── Shell Sort/
+|   ├── Heap Sort/
 │   └── README.md
 │
 ├── Stack & Queue/
 │   ├── main.cpp
 │   ├── Stack.h
+|   ├── PriorityQueue.h
 │   └── Queue.h
 │
 ├── Trees/
