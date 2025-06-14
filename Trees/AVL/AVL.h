@@ -42,6 +42,23 @@ class AVL {
 private:
     AVLNode<T>* root;
 
+    int countNodes(AVLNode<T>* current) {
+        if (!current) return 0;
+        return 1 + countNodes(current->getLeft()) + countNodes(current->getRight());
+    }
+
+    AVLNode<T>* makeAVL(const vector<T>& nums, const int& left, const int& right){
+        if (left > right) return nullptr;
+
+        int mid = (left + right) /2;
+        auto* node = new AVLNode<T>(nums[mid]);
+
+        node->setLeft(makeAVL(nums, left , mid -1));
+        node->setRight(makeAVL(nums, mid +1 , right));
+
+        return node;
+    }
+
     bool isSame(AVLNode<T>* left, AVLNode<T>* right) {
         if (!left && !right) return true;
         else if (!left || !right) return false;
@@ -79,7 +96,6 @@ private:
             inOrder(current->getLeft(), action, result);
 
             if (action == "Sum") result += current->getData();
-            else if (action == "Count Nodes") result++;
             else if (action == "Count Leaves"){
                 if (!current->getLeft() && !current->getRight()) result++;
             }
@@ -238,9 +254,8 @@ public:
     }
 
     int countNodes(){
-        T totalNodes = 0;
-        inOrder(this->root, "Count Nodes", totalNodes);
-        return totalNodes;
+        AVLNode<T> *current = this->root;
+        return countNodes(current);
     }
 
     int countLeaves(){
@@ -284,6 +299,12 @@ public:
         this->root = insertNode(this->root, data);
     }
 
+    void arrayToAVL(vector<T> arr){
+        sort(arr.begin(), arr.end());
+        clear();
+        this-> root = makeAVL(arr, 0, arr.size() -1);
+    }
+
     void erase(const T& data) {
         this->root = eraseNode(this->root, data);
     }
@@ -306,6 +327,32 @@ public:
             }
             cout << endl;
         }
+    }
+
+    vector<vector<int>> storeLevels(){
+        vector<vector<int>> result;
+        if (!root) return result;
+
+        queue<AVLNode<T>*> q;
+        q.push(root);
+
+        while (!q.empty()) {
+            int levelSize = q.size();  // Number of nodes at current level
+            vector<int> level;
+
+            for (int i = 0; i < levelSize; ++i) {
+                AVLNode<T>* node = q.front();
+                q.pop();
+                level.push_back(node->getData());
+
+                if (node->getLeft()) q.push(node->getLeft());
+                if (node->getRight()) q.push(node->getRight());
+            }
+
+            result.push_back(level);
+        }
+
+        return result;
     }
 
     void printDepthFirst(const string& orderBy = "Inorder Traversal"){

@@ -83,11 +83,35 @@ int main() {
     // Find the height of the BST.
     cout << "The Tree has: " << bst->level() << " levels." << endl;
 
+    // Store levels of the BST in a vector of vectors.
+    cout << "Levels of the BST:" << endl;
+    vector<vector<int>> arr = bst->storeLevels();
+    for (int i = 0; i < arr.size(); ++i) {
+        cout << " - Level " << i+1 << ": ";
+        for (const int& j : arr[i]) {
+            cout << j << " ";
+        }
+        cout << endl;
+    }
+
     // Clear the BST.
     bst->clear();
 
     // Count nodes after clearing the tree.
     cout << "Number of Nodes: " << bst->countNodes() << endl;
+
+    // Make a new Balanced BST tree from an array.
+    vector<int> array = {5, 3, 8, 1, 4, 7, 6, 2};
+    bst->arrayToBalancedBST(array);
+    cout << "Balanced BST tree created from an array:" << endl;
+    arr = bst->storeLevels();
+    for (int i = 0; i < arr.size(); ++i) {
+        cout << " - Level " << i+1 << ": ";
+        for (const int& j : arr[i]) {
+            cout << j << " ";
+        }
+        cout << endl;
+    }
 
     return 0;
 }

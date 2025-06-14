@@ -79,11 +79,35 @@ int main() {
     // Find the height of the AVL tree.
     cout << "The tree has: " << avl->level() << " levels" << endl;
 
+    // Store levels of the AVL in a vector of vectors.
+    cout << "Levels of the AVL:" << endl;
+    vector<vector<int>> arr = avl->storeLevels();
+    for (int i = 0; i < arr.size(); ++i) {
+        cout << " - Level " << i+1 << ": ";
+        for (const int& j : arr[i]) {
+            cout << j << " ";
+        }
+        cout << endl;
+    }
+
     // Clear the AVL tree.
     avl->clear();
 
     // Count all nodes in the AVL tree after clearing it.
     cout << "Number of Nodes: " << avl->countNodes() << endl;
+
+    // Make a new AVL tree from an array.
+    vector<int> array = {5, 3, 8, 1, 4, 7, 6, 2};
+    avl->arrayToAVL(array);
+    cout << "AVL tree created from an array:" << endl;
+    arr = avl->storeLevels();
+    for (int i = 0; i < arr.size(); ++i) {
+        cout << " - Level " << i+1 << ": ";
+        for (const int& j : arr[i]) {
+            cout << j << " ";
+        }
+        cout << endl;
+    }
 
     return 0;
 }
